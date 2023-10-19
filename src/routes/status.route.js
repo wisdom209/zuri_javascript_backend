@@ -9,7 +9,7 @@ const router = express.Router()
  *   get:
  *     summary: Get server status
  *     description: Returns success if server is up and running
- *     tag: [Status]
+ *     tags: [Status]
  *     responses:
  *       200:
  *         description: OK
