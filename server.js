@@ -23,7 +23,6 @@ app.use('/api', router)
 const PORT = process.env.PORT || 4000
 
 sequelize.authenticate().then(async () => {
-	await sequelize.sync({force: false})
 	console.log("Connected to the db")
 	app.listen(PORT, () => {
 		console.log("Server is listening on port", PORT);

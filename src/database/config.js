@@ -10,8 +10,7 @@ const sequelize = new Sequelize({
 	password: process.env.DB_PASSWORD,
 	username: process.env.DB_USER,
 	database: process.env.DB_NAME,
-	dialectModule: mysql,
-	logging: false
+	dialectModule: mysql
 })
 
 export default sequelize;

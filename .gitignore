@@ -130,3 +130,5 @@ dist
 .pnp.*
 
 *lock.yaml
+Posts.sql
+Users.sql
