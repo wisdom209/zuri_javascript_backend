@@ -7,17 +7,12 @@ const getUsers = async (req, res) => {
 
 		page = Number(page);
 
-		if (isNaN(page) || page <= 1)
-			page = 0
-		else
-			page = (page - 1) * 25
-
 		const users = await User.findAll({
 			limit: 25,
-			offset: page
+			offset: isNaN(page) || page <= 1 ? 0 : (page - 1) * 25
 		})
 
-		return responseHandler.success(res, { page: page + 1, users });
+		return responseHandler.success(res, { page: isNaN(page) || page <= 1 ? 1 : page, users });
 	} catch (error) {
 		return responseHandler.serverError(res, error.message)
 	}
