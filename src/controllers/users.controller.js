@@ -16,7 +16,70 @@ const getUsers = async (req, res) => {
 	} catch (error) {
 		return responseHandler.serverError(res, error.message)
 	}
-
 }
 
-export default { getUsers }
+const createUser = async (req, res) => {
+	try {
+		const { username, firstname, lastname, email, country } = req.body;
+
+		const user = await User.create({ username, firstname, lastname, email, country });
+
+		return responseHandler.created(res, user.toJSON());
+	} catch (error) {
+		return responseHandler.serverError(res, error.message)
+	}
+}
+
+const getUser = async (req, res) => {
+	try {
+		const { userId } = req.params;
+
+		const user = await User.findOne({ where: { id: userId } })
+
+		if (!user) return responseHandler.notFound(res, "User not found");
+
+		return responseHandler.success(res, user.toJSON())
+	} catch (error) {
+		return responseHandler.serverError(res, error.message)
+	}
+}
+
+
+const removeUser = async (req, res) => {
+	try {
+		const { userId } = req.params;
+
+		await User.destroy({ where: { id: userId } })
+
+		return responseHandler.success(res);
+	} catch (error) {
+		return responseHandler.serverError(res, error.message)
+	}
+}
+
+const updateUser = async (req, res) => {
+	try {
+		const { userId } = req.params;
+		const { username, firstname, lastname, email, country } = req.body;
+
+		let user = await User.findByPk(userId)
+
+		if (!user) return responseHandler.badRequest(res, "invalid user id")
+
+		user.username = username
+		user.firstname = firstname
+		user.lastname = lastname
+		user.email = email
+		user.country = country
+
+		user = await user.save()
+
+		return responseHandler.success(res, user.toJSON());
+	} catch (error) {
+		return responseHandler.serverError(res, error.message)
+	}
+}
+
+
+
+export default { getUsers, removeUser, updateUser, createUser, getUser }
