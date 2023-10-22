@@ -17,7 +17,9 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use('/api-docs', serve, setup(swaggerSpec))
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
+app.use('/api-docs', serve, setup(swaggerSpec, { customCssUrl: CSS_URL }))
 app.use('/api', router)
 
 const PORT = process.env.PORT || 4000
