@@ -16,8 +16,8 @@ dotenv.config()
 
 const sequelize = new Sequelize({
 	dialect: "sqlite",
-	storage: '../../dblite',
-	logging: false
+	storage: './dblite',
+	logging: true
 })
 
 export default sequelize;

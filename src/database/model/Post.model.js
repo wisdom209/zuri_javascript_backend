@@ -1,6 +1,5 @@
-import sequelize from "../config.js";
 import { DataTypes } from "sequelize";
-
+import sequelize from "../config.js";
 
 const validateNotEmpty = {
 	notEmpty: {

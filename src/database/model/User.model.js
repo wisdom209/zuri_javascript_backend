@@ -1,6 +1,5 @@
-import sequelize from "../config.js";
 import { DataTypes } from "sequelize";
-import Post from "./Post.model.js";
+import sequelize from "../config.js";
 
 const validateNotEmpty = {
 	notEmpty: {
