@@ -4,13 +4,19 @@ import { Sequelize } from "sequelize";
 
 dotenv.config()
 
+// const sequelize = new Sequelize({
+// 	dialect: 'mysql',
+// 	host: process.env.DB_HOST,
+// 	password: process.env.DB_PASSWORD,
+// 	username: process.env.DB_USER,
+// 	database: process.env.DB_NAME,
+// 	dialectModule: mysql,
+// 	logging: false
+// })
+
 const sequelize = new Sequelize({
-	dialect: 'mysql',
-	host: process.env.DB_HOST,
-	password: process.env.DB_PASSWORD,
-	username: process.env.DB_USER,
-	database: process.env.DB_NAME,
-	dialectModule: mysql,
+	dialect: "sqlite",
+	storage: '../../dblite',
 	logging: false
 })
 

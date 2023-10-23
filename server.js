@@ -30,3 +30,5 @@ sequelize.authenticate().then(async () => {
 		console.log("Server is listening on port", PORT);
 	})
 })
+
+export default app

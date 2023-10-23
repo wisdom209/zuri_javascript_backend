@@ -1,6 +1,6 @@
 import sequelize from "../config.js";
 import { DataTypes } from "sequelize";
-import User from "./User.model.js";
+
 
 const validateNotEmpty = {
 	notEmpty: {
@@ -25,3 +25,4 @@ const Post = sequelize.define("Posts", {
 	}
 }, { timestamps: false })
 export default Post;
+
