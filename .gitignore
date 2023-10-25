@@ -132,3 +132,4 @@ dist
 *lock.yaml
 Posts.sql
 Users.sql
+.vscode
