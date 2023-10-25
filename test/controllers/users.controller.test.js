@@ -99,16 +99,20 @@ describe("Test User endpoints", () => {
 
 	})
 
-	it("Should call User.destroy when delete endpoint is hit and with the right userId", async () => {
-		User.destroy = jest.fn()
-		response = await supertest(app).delete('/api/user/1');
+	describe("DELETE /user/:userId", () => {
 
-		expect(User.destroy.mock.calls).toHaveLength(1)
+		it("Should call User.destroy when delete endpoint is hit and with the right userId", async () => {
+			User.destroy = jest.fn()
+			response = await supertest(app).delete('/api/user/1');
 
-		expect(User.destroy).toHaveBeenCalledWith({ where: { id: "1" } })
+			expect(User.destroy.mock.calls).toHaveLength(1)
 
-		expect(response.status).toBe(200)
+			expect(User.destroy).toHaveBeenCalledWith({ where: { id: "1" } })
+
+			expect(response.status).toBe(200)
+		})
 	})
+
 
 	describe("PUT /:user/userId", () => {
 
@@ -141,7 +145,7 @@ describe("Test User endpoints", () => {
 			User.findByPk = jest.fn(() => Promise.resolve({ toJSON: () => userRequestBody, save: saveMock }))
 
 			response = await supertest(app).put("/api/user/1").send(userRequestBody)
-			
+
 			expect(User.findByPk.mock.calls).toHaveLength(1)
 			expect(User.findByPk).toHaveBeenCalledWith("1")
 			expect(response.statusCode).toBe(200)

@@ -16,3 +16,9 @@ export const userRequestBody = {
 	email: "favour@abx.com",
 	country: "china",
 }
+
+
+export const postRequestBody = {
+	title: "Hello world",
+	body: "Lorem ipsum dolor sit amet"
+}

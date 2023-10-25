@@ -10,7 +10,7 @@ let sequelize;
 if (process.env.Type == 'Test') {
 	sequelize = new Sequelize({
 		dialect: 'sqlite',
-		storage: './dblite.dev',
+		storage: './test/database/test.db',
 		dialectModule: sqlite,
 		logging: false
 	})

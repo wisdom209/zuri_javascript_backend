@@ -24,7 +24,7 @@ const router = express.Router()
  *       500:
  *         description: Internal sever error
  */
-router.get('/posts/:page', postsController.getPosts)
+router.get('/posts', postsController.getPosts)
 
 /**
  * @swagger

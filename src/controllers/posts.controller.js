@@ -71,7 +71,7 @@ const updatePost = async (req, res) => {
 
 		let post = await Post.findByPk(postId);
 
-		if (!post) return responseHandler.badRequest(res, "Post not found");
+		if (!post) return responseHandler.notFound(res, "Post not found");
 
 		post.title = title;
 		post.body = body;
