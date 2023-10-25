@@ -1,10 +1,11 @@
 const request = require('supertest');
 import makeApp from '../../app.js';
-import sequelize from '../database/config.js';
+import sequelize from '../../src/database/config.js';
 
 describe("GET /api/status",() => {
 	let response;
 	beforeAll(async () => {
+		await sequelize.sync()
 		const app = await makeApp(sequelize)
 		response = await request(app).get('/api/status');
 	})

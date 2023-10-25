@@ -1,0 +1,11 @@
+{
+	"sqltools.useNodeRuntime": true,
+	"sqltools.connections": [
+		{
+			"previewLimit": 50,
+			"driver": "SQLite",
+			"name": "tests",
+			"database": "${workspaceFolder:zuri_javascript_backend}/dblite.dev"
+		}
+	]
+}

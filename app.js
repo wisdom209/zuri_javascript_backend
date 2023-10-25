@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import morgan from 'morgan'
 import swaggerSpec from './swagger.js';
+import models from './src/database/model/index.model.js'
 import { serve, setup } from 'swagger-ui-express';
 
 import router from './src/routes/index.route.js';
@@ -25,9 +26,6 @@ export default async function (database) {
 	const PORT = process.env.PORT || 4000
 
 	await database.authenticate()
-	await database.sync()
-
-	console.log("db connected")
 
 	return app;
 }

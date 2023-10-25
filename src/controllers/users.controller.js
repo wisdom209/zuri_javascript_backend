@@ -22,6 +22,10 @@ const createUser = async (req, res) => {
 	try {
 		const { username, firstname, lastname, email, country } = req.body;
 
+		if (!username || !firstname || !lastname || !email || !country) {
+			return responseHandler.badRequest(res, "Missing required field")
+		}
+
 		const user = await User.create({ username, firstname, lastname, email, country });
 
 		return responseHandler.created(res, user.toJSON());
@@ -62,9 +66,13 @@ const updateUser = async (req, res) => {
 		const { userId } = req.params;
 		const { username, firstname, lastname, email, country } = req.body;
 
+		if (!username || !firstname || !lastname || !email || !country) {
+			return responseHandler.badRequest(res, "Missing required field")
+		}
+
 		let user = await User.findByPk(userId)
 
-		if (!user) return responseHandler.badRequest(res, "invalid user id")
+		if (!user) return responseHandler.notFound(res, "invalid user id")
 
 		user.username = username
 		user.firstname = firstname

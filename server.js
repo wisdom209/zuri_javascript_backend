@@ -1,7 +1,6 @@
 import makeApp from "./app.js";
 import dotenv from 'dotenv'
 import sequelize from "./src/database/config.js";
-import { Post, User } from './src/database/model/index.model.js'
 dotenv.config()
 
 const app = await makeApp(sequelize)
