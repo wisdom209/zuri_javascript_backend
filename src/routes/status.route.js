@@ -5,7 +5,7 @@ const router = express.Router()
 
 /**
  * @swagger
- * /api/status:
+ * /api/v1/status:
  *   get:
  *     summary: Get server status
  *     description: Returns success if server is up and running

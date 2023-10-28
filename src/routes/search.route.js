@@ -5,7 +5,7 @@ const router = express.Router()
 
 /**
  * @swagger
- * /api/search:
+ * /api/v1/search:
  *   get:
  *     summary: Search for an item
  *     description: Search for an item based on given query param

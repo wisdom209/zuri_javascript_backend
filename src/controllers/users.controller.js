@@ -1,5 +1,5 @@
 import User from '../database/model/User.model.js';
-import * as responseHandler from '../utils/responseHandler.js'
+import * as responseHandler from '../utils/responseHandler.js';
 
 const getUsers = async (req, res) => {
 	try {
@@ -18,21 +18,6 @@ const getUsers = async (req, res) => {
 	}
 }
 
-const signUp = async (req, res) => {
-	try {
-		const { username, firstname, lastname, email, country } = req.body;
-
-		if (!username || !firstname || !lastname || !email || !country) {
-			return responseHandler.badRequest(res, "Missing required field")
-		}
-
-		const user = await User.create({ username, firstname, lastname, email, country });
-
-		return responseHandler.created(res, user.toJSON());
-	} catch (error) {
-		return responseHandler.serverError(res, error.message)
-	}
-}
 
 const getUser = async (req, res) => {
 	try {
@@ -74,11 +59,11 @@ const updateUser = async (req, res) => {
 
 		if (!user) return responseHandler.notFound(res, "invalid user id")
 
-		user.username = username
-		user.firstname = firstname
-		user.lastname = lastname
-		user.email = email
-		user.country = country
+		user.username = username.toLowerCase()
+		user.firstname = firstname.toLowerCase()
+		user.lastname = lastname.toLowerCase()
+		user.email = email.toLowerCase()
+		user.country = country.toLowerCase()
 
 		user = await user.save()
 
@@ -89,5 +74,4 @@ const updateUser = async (req, res) => {
 }
 
 
-
-export default { getUsers, removeUser, updateUser, signUp, getUser }
+export default { getUsers, removeUser, updateUser, getUser }

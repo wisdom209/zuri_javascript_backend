@@ -49,9 +49,9 @@ const getUserPosts = async (req, res) => {
 
 const createPost = async (req, res) => {
 	try {
-		const { title, body, userId } = req.body;
+		const { title, body } = req.body;
 
-		const user = await User.findByPk(userId);
+		const user = await User.findByPk(req.userObject.user.id);
 
 		if (!user) return responseHandler.notFound(res, "User not found");
 
@@ -69,7 +69,7 @@ const updatePost = async (req, res) => {
 	try {
 		const { title, body, postId } = req.body;
 
-		let post = await Post.findByPk(postId);
+		let post = await Post.findOne({ where: { id: postId, UserId: req.userObject.user.id } });
 
 		if (!post) return responseHandler.notFound(res, "Post not found");
 
@@ -89,9 +89,13 @@ const deletePost = async (req, res) => {
 	try {
 		const { postId } = req.params;
 
-		const post = await Post.findByPk(postId)
+		const isUserPost = await User.findOne({ where: { id: req.userObject.user.id }, include: [Post] })
 
-		if (!post) return responseHandler.notFound(res, "Post not found");
+		const postExist = (isUserPost.dataValues.Posts.map(v => `${v.id}`)).includes(`${postId}`)
+
+		if (!postExist) return responseHandler.notFound(res, "Post not found");
+
+		const post = await Post.findByPk(postId)
 
 		await post.destroy()
 

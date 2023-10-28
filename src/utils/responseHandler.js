@@ -43,6 +43,15 @@ export const serverError = (res, data) => {
 	})
 }
 
+export const unauthorized = (res, data) => {
+	const status = 401;
+	return res.status(status).json({
+		status: status,
+		message: "Unauthorized",
+		data
+	})
+}
+
 
 
 

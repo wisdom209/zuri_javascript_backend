@@ -12,7 +12,7 @@ if (process.env.Type == 'Test') {
 		dialect: 'sqlite',
 		storage: './test/database/test.db',
 		dialectModule: sqlite,
-		logging: false
+		// logging: false
 	})
 } else {
 	sequelize = new Sequelize({
