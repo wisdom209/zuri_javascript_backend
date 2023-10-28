@@ -10,7 +10,7 @@ const signUpValidator = async (req, res, next) => {
 				body('lastname').isLength({ min: 2 }).withMessage("lastname must have a minimum of 2 letters").run(req),
 				body('country').isLength({ min: 3 }).withMessage("country must have a minimum of 3 letters").run(req),
 				body('password').isLength({ min: 6 }).withMessage("password must have a minimum of 6 characters").run(req),
-				body('email').isEmail().withMessage("Entry must be a valid email"),
+				body('email').isEmail().withMessage("Entry must be a valid email").run(req),
 			]
 		)
 
