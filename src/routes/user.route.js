@@ -1,5 +1,5 @@
-import express from 'express'
-import usersController from '../controllers/users.controller.js'
+import express from 'express';
+import usersController from '../controllers/users.controller.js';
 
 const router = express.Router()
 
@@ -145,7 +145,7 @@ router.put('/user/:userId', usersController.updateUser)
  *       500:
  *         description: Internal Server Error
  */
-router.post('/user', usersController.createUser)
+router.post('/user', usersController.signUp)
 
 /**
  * @swagger

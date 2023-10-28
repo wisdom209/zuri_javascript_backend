@@ -18,7 +18,7 @@ const getUsers = async (req, res) => {
 	}
 }
 
-const createUser = async (req, res) => {
+const signUp = async (req, res) => {
 	try {
 		const { username, firstname, lastname, email, country } = req.body;
 
@@ -90,4 +90,4 @@ const updateUser = async (req, res) => {
 
 
 
-export default { getUsers, removeUser, updateUser, createUser, getUser }
+export default { getUsers, removeUser, updateUser, signUp, getUser }

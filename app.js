@@ -14,7 +14,7 @@ export default async function (database) {
 	const app = express()
 	
 	app.use(cors())
-	//app.use(morgan('dev'))
+	app.use(morgan('dev'))
 	app.use(express.json())
 	app.use(express.urlencoded({ extended: false }))
 
@@ -22,8 +22,6 @@ export default async function (database) {
 
 	app.use('/api-docs', serve, setup(swaggerSpec, { customCssUrl: CSS_URL }))
 	app.use('/api', router)
-
-	const PORT = process.env.PORT || 4000
 
 	await database.authenticate()
 

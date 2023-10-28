@@ -5,7 +5,7 @@ const router = express.Router()
 
 /**
  * @swagger
- * /api/posts/{page}:
+ * /api/posts:
  *   get:
  *     summary: Get all posts, 25 per page
  *     description: Gets all posts
