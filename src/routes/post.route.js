@@ -1,6 +1,7 @@
 import express from 'express'
 import postsController from '../controllers/posts.controller.js';
 import authenticate from '../middlewares/authenticator.middleware.js';
+import validator from '../middlewares/validator.middleware.js';
 
 const router = express.Router()
 
@@ -99,7 +100,7 @@ router.get('/post/:postId', postsController.getPost)
  *       500:
  *         description: Internal sever error
  */
-router.post('/post', authenticate, postsController.createPost)
+router.post('/post', validator.createPostValidator, authenticate, postsController.createPost)
 
 /**
  * @swagger
@@ -130,7 +131,7 @@ router.post('/post', authenticate, postsController.createPost)
  *       500:
  *         description: Internal sever error
  */
-router.put('/post', authenticate, postsController.updatePost);
+router.put('/post', validator.updatePostValidator, authenticate, postsController.updatePost);
 
 /**
  * @swagger

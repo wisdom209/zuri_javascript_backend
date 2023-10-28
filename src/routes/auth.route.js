@@ -1,5 +1,6 @@
 import express from 'express'
 import authController from '../controllers/auth.controller.js'
+import validator from '../middlewares/validator.middleware.js'
 
 const router = express.Router()
 
@@ -44,7 +45,7 @@ const router = express.Router()
  *       500:
  *         description: Internal Server Error
  */
-router.post('/register', authController.signUp)
+router.post('/register', validator.signUpValidator, authController.signUp)
 
 /**
  * @swagger
@@ -63,6 +64,7 @@ router.post('/register', authController.signUp)
  *             properties:
  *               username:
  *                 type: string
+ *                 example: james123
  *               password:
  *                 type: string
  *                 example: password123
@@ -72,7 +74,7 @@ router.post('/register', authController.signUp)
  *       500:
  *         description: Internal Server Error
  */
-router.post('/signin', authController.signIn)
+router.post('/signin', validator.signInValidator, authController.signIn)
 
 /**
  * @swagger

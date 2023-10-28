@@ -89,13 +89,7 @@ const deletePost = async (req, res) => {
 	try {
 		const { postId } = req.params;
 
-		const isUserPost = await User.findOne({ where: { id: req.userObject.user.id }, include: [Post] })
-
-		const postExist = (isUserPost.dataValues.Posts.map(v => `${v.id}`)).includes(`${postId}`)
-
-		if (!postExist) return responseHandler.notFound(res, "Post not found");
-
-		const post = await Post.findByPk(postId)
+		const post = await Post.findOne({ where: { id: postId, UserId: req.userObject.user.id } });
 
 		await post.destroy()
 
