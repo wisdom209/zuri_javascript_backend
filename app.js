@@ -18,7 +18,7 @@ export default async function (database) {
 	app.use(cors())
 	app.use(morgan('dev'))
 	app.use(express.json())
-	app.use(express.urlencoded({ extended: false }))
+	app.use(express.urlencoded({ extended: true }))
 
 	const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 
